@@ -1,0 +1,17 @@
+{
+    "mcpServers": {
+        "blind-auditor": {
+            "command": "uv",
+            "args": [
+                "run",
+                "python",
+                "-m",
+                "src.main"
+            ],
+            "cwd": "/Users/xhldemac/BlindAuditor/blind-auditor",
+            "env": {
+                "PYTHONPATH": "/Users/xhldemac/BlindAuditor/blind-auditor"
+            }
+        }
+    }
+}
