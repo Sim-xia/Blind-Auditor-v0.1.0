@@ -62,7 +62,7 @@ You MUST interact with the `Blind Auditor` MCP tool:
     "blind-auditor": {
       "command": "python",
       "args": ["-m", "src.main"],
-      "cwd": "/Users/xhldemac/BlindAuditor/blind-auditor"
+      "cwd": "/path/to/blind-auditor"
     }
   }
 }
