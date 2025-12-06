@@ -146,24 +146,24 @@ Whenever you generate code for a user request, you **MUST NOT** output the code 
 
 ```mermaid
 graph TD
-    User[用户请求] --> Agent
-    Agent[智能体生成草稿] -->|1. submit_draft| MCP
+    User["用户请求"] --> Agent
+    Agent["智能体生成草稿"] -->|1. submit_draft| MCP
     MCP -->|2. 注入审计指令| Agent
     
-    subgraph "Thinking Isolation (思维隔离层)"
+    subgraph Isolation ["Thinking Isolation (思维隔离层)"]
         Agent -->|3. 自我审查| Agent
         Agent -->|4. submit_audit_result| MCP
     end
     
-    MCP -->|5. 判定结果| Decision{通过?}
+    MCP -->|5. 判定结果| Decision{"通过?"}
     
-    Decision -->|否 (发现问题)| Retry[重试计数 +1]
-    Retry -->|未超限| Fix[智能体修复代码]
+    Decision -->|否 (发现问题)| Retry["重试计数 +1"]
+    Retry -->|未超限| Fix["智能体修复代码"]
     Fix -->|再次提交| Agent
     
-    Decision -->|是 (评分 >= 80)| Final[✅ 输出最终代码]
+    Decision -->|是 (评分 >= 80)| Final["✅ 输出最终代码"]
     
-    Retry -->|已超限| Force[⚠️ 强制输出 (带警告)]
+    Retry -->|已超限| Force["⚠️ Force Output (With Warning)"]
 ```
 
 ## ❓ 常见问题排查 (Troubleshooting)

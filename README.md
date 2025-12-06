@@ -146,24 +146,24 @@ Resets the state and clears the retry count.
 
 ```mermaid
 graph TD
-    User[User Request] --> Agent
-    Agent[Agent Generates Draft] -->|1. submit_draft| MCP
+    User["User Request"] --> Agent
+    Agent["Agent Generates Draft"] -->|1. submit_draft| MCP
     MCP -->|2. Inject Audit Instructions| Agent
     
-    subgraph "Thinking Isolation"
+    subgraph Isolation ["Thinking Isolation"]
         Agent -->|3. Self-Review| Agent
         Agent -->|4. submit_audit_result| MCP
     end
     
-    MCP -->|5. Verdict| Decision{Passed?}
+    MCP -->|5. Verdict| Decision{"Passed?"}
     
-    Decision -->|No (Issues Found)| Retry[Retry Count +1]
-    Retry -->|Limit Not Reached| Fix[Agent Fixes Code]
+    Decision -->|No (Issues Found)| Retry["Retry Count +1"]
+    Retry -->|Limit Not Reached| Fix["Agent Fixes Code"]
     Fix -->|Resubmit| Agent
     
-    Decision -->|Yes (Score >= 80)| Final[✅ Output Final Code]
+    Decision -->|Yes (Score >= 80)| Final["✅ Output Final Code"]
     
-    Retry -->|Limit Reached| Force[⚠️ Force Output (With Warning)]
+    Retry -->|Limit Reached| Force["⚠️ Force Output (With Warning)"]
 ```
 
 ## ❓ Troubleshooting
